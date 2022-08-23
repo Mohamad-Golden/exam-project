@@ -1,53 +1,7 @@
 from utils import render
 from urllib.parse import parse_qs, urlsplit
+import json
 
-
-CONTEXT = [
-    {
-        'id':1,
-        'question': 'question1',
-        'choices':[
-            'choice1',
-            'choice2',
-            'choice3',
-            'choice4'
-        ],
-        'answer':4
-    },
-    {
-        'id':2,
-        'question': 'question2',
-        'choices':[
-            'choice1',
-            'choice2',
-            'choice3',
-            'choice4'
-        ],
-        'answer':1
-    },
-    {
-        'id':3,
-        'question': 'question3',
-        'choices':[
-            'choice1',
-            'choice2',
-            'choice3',
-            'choice4'
-        ],
-        'answer':3
-    },
-    {
-        'id':4,
-        'question': 'question4',
-        'choices':[
-            'choice1',
-            'choice2',
-            'choice3',
-            'choice4'
-        ],
-        'answer':2
-    }
-]
 
 def home(environ):
     method = environ.get('REQUEST_METHOD')
@@ -57,8 +11,11 @@ def home(environ):
 
 def exam(environ):
     method = environ.get('REQUEST_METHOD')
+    with open('data/data.json') as f:
+        data_context = json.load(f)
+        
     if method == 'GET':
-        return render('exam.html', context={'questions':CONTEXT})
+        return render('exam.html', context={'questions':data_context})
     
     elif method == 'POST':
         raw = '?' + environ.get('wsgi.input').read().decode()
@@ -67,7 +24,7 @@ def exam(environ):
 
         score = 0
         for question, answer in data.items():
-            if CONTEXT[question-1].get('answer') == answer:
+            if data_context[question-1].get('answer') == answer:
                 score += 1
-    
         return render('result.html', context={'score':score})
+

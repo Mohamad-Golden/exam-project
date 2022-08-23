@@ -5,24 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/static/main.css">
+
 </head>
 <body>
-    <div>
-        <!-- timer -->
-    </div>
-    <form method="POST">
-        <div>
-            {% for question in questions %}
-                <div>
-                    {{ question.get('question') }}
-                </div>
-                {% for choice in question.get('choices') %}
-                    <input type="radio" id="{{ loop.index }}" value="{{ loop.index }}" name="{{ question.id }}">
-                    <label for="{{ loop.index }}">{{ choice }}</label>
+    
+    <form method="POST" id="exam_form">
+        <div class="main">
+            <div id="timer">
+                <!-- timer -->
+            </div>
+            <ol>
+                {% for question in questions %}
+                    <li>
+                        {% if question.id == 15 %}
+                            <b>{{ question.get('question') }}</b>
+                        {% else %}
+                            <pre><code>{{ question.get('question') }}</code></pre>
+                        {% endif %}
+                        <div class="choices">
+                            {% for choice in question.get('choices') %}
+                                <div>
+                                    <input type="radio" id="{{ question.id }}-{{ loop.index }}" value="{{ loop.index }}" name="{{ question.id }}">
+                                    <label for="{{ question.id }}-{{ loop.index }}">{{ choice }}</label>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </li>
                 {% endfor %}
-            {% endfor %}
+            </ol>
         </div>
-        <input type="submit" value="submit">
+        <input class="btn" type="submit" value="submit">
     </form>
+    <script src="/static/main.js"></script>
 </body>
 </html>

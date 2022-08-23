@@ -1,0 +1,94 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 18px;
+    padding-block: 40px;
+    padding-inline: 60px;
+    font-family: sans-serif;
+}
+
+#timer{
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 4rem;
+    height: 3rem;
+    display: grid;
+    place-items: center;
+    place-content: center;
+    margin-inline: auto;
+    margin-bottom: 20px;
+}
+
+.main{
+    background-color: rgb(195, 231, 240);
+    border-radius: 20px;
+    padding-block: 20px;
+    word-wrap: break-word;
+}
+
+
+.main li{
+    margin-block: 30px;
+    background-color: rgb(222, 206, 224);
+    border-radius: 20px;
+    padding: 20px;
+    margin-inline: 100px;
+}
+
+
+.choices{
+    margin-left: 22px;
+}
+
+.choices  div{
+    margin-block: 10px;
+}
+
+.btn{
+    border: 1px solid rgb(0, 146, 0);
+    background-color: white;
+    padding: .5rem;
+    border-radius: 20px;
+    color: rgb(0, 146, 0);
+    margin-inline: auto;
+    display: inline-block;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.btn:hover{
+    color: white;
+    background-color: rgb(0, 146, 0);
+}
+
+pre code {
+    background-color: #eee;
+    border: 1px solid #999;
+    display: block;
+    padding: 20px;
+    white-space: pre-wrap;
+}
+
+
+input, label{
+    cursor: pointer;
+}
+
+@media screen and (max-width:1000px){
+    .main li{
+        margin-inline: 10px;
+    }
+}
+
+@media screen and (max-width:650px){
+    .main li{
+        margin-inline: 0;
+    }
+    html{
+        padding: 0;
+    }
+}
+

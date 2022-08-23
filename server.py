@@ -1,25 +1,32 @@
 # Gunicorn
 
-from urllib import response
-from urls import urlpatterns
-
+from urls import urlpatterns, static_root
+from utils import static_view, static
+import os
 
 def app(environ, start_response):
     endpoint = environ.get("PATH_INFO")
-    
+    content_type = 'text/html'
     response_404 = "<h3>404 page not found!</h3>"
     data = response_404
+
     if not endpoint.endswith('/'):
         endpoint += '/'
 
-    if endpoint in urlpatterns.keys():
-        data = urlpatterns.get(endpoint)(environ)
-    
+    if endpoint in static(static_root):
+        data = static_view(os.path.basename(endpoint[:-1]), static_root)
+        if os.path.splitext(endpoint[:-1])[1] == '.css':
+            content_type = 'text/css'
+        elif os.path.splitext(endpoint[:-1])[1] == '.js':
+            content_type = 'text/javascript'
+
     header = [
-        ("Content-Type", "text/html"),
-        ("Content-Length", str(len(data)))
+    ("Content-Type", content_type),
     ]
 
+    if endpoint in urlpatterns.keys():
+        data = urlpatterns.get(endpoint)(environ)
+        
     if data is None:
         data = "<h3>Request method not supported!</h3>"
         status = "400"

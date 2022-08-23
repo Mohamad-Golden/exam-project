@@ -13,7 +13,7 @@ html{
 #timer{
     border: 1px solid black;
     border-radius: 50%;
-    width: 4rem;
+    width: 5rem;
     height: 3rem;
     display: grid;
     place-items: center;

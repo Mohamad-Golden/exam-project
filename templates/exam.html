@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <!-- timer -->
+    </div>
+    <form method="POST">
+        <div>
+            {% for question in questions %}
+                <div>
+                    {{ question.get('question') }}
+                </div>
+                {% for choice in question.get('choices') %}
+                    <input type="radio" id="{{ loop.index }}" value="{{ loop.index }}" name="{{ question.id }}">
+                    <label for="{{ loop.index }}">{{ choice }}</label>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <input type="submit" value="submit">
+    </form>
+</body>
+</html>

@@ -12,7 +12,7 @@ pip install gunicorn
 
 -------
 ## Start the server
-In the root directory of the project run this commend:
+In the root directory of the project run this command:
 ```
 gunicorn server:app
 ```

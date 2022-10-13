@@ -4,7 +4,7 @@
 * gunicorn
 
 ---------
-## Insatll gunicorn
+## Install gunicorn
 run the comment below to install gunicorn:
 ```
 pip install gunicorn

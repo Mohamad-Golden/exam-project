@@ -16,4 +16,4 @@ In the root directory of the project run this command:
 ```
 gunicorn server:app
 ```
-Then open this link "http://127.0.0.1:8000/" in the browser.
+Then open this link http://127.0.0.1:8000/ in the browser.

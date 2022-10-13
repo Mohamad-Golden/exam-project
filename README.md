@@ -5,7 +5,7 @@
 
 ---------
 ## Install gunicorn
-run the command below to install gunicorn:
+Run the command below to install gunicorn:
 ```
 pip install gunicorn
 ```
